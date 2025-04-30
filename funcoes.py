@@ -1,3 +1,2 @@
-#arquivo funções 
-oi teste.n
-luli
+import math 
+import random 
