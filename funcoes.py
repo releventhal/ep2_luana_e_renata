@@ -40,3 +40,25 @@ def calcula_pontos_soma(dados):
     for n in dados:
         soma += n
     return soma
+
+def calcula_pontos_sequencia_baixa(dados):
+    novos = []
+    for n in dados:
+        if n not in novos:
+            novos.append(n)
+
+    for i in range(len(novos)):
+        for j in range(i + 1, len(novos)):
+            if novos[i] > novos[j]:
+                novos[i], novos[j] = novos[j], novos[i]
+
+    contagem = 1
+    for i in range(1, len(novos)):
+        if novos[i] == novos[i - 1] + 1:
+            contagem += 1
+            if contagem >= 4:
+                return 15
+        else:
+            contagem = 1
+
+    return 0
