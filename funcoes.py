@@ -23,3 +23,20 @@ def remover_dado(dados_rolados, dados_no_estoque, dado_para_remover):
         
         del dados_no_estoque[dado_para_remover]
     return [dados_rolados, dados_no_estoque]
+
+def calcula_pontos_regra_simples(dados):
+    pontos = {}
+    for i in range(1, 7):
+        pontos[i] = 0  
+
+    for dado in dados:
+        if 1 <= dado <= 6:
+            pontos[dado] += dado
+
+    return pontos
+
+def calcula_pontos_soma(dados):
+    soma = 0
+    for n in dados:
+        soma += n
+    return soma
