@@ -62,3 +62,25 @@ def calcula_pontos_sequencia_baixa(dados):
             contagem = 1
 
     return 0
+
+def calcula_pontos_sequencia_alta(dados):
+    novos = []
+    for n in dados:
+        if n not in novos:
+            novos.append(n)
+
+    for i in range(len(novos)):
+        for j in range(i + 1, len(novos)):
+            if novos[i] > novos[j]:
+                novos[i], novos[j] = novos[j], novos[i]
+
+    contagem = 1
+    for i in range(1, len(novos)):
+        if novos[i] == novos[i - 1] + 1:
+            contagem += 1
+            if contagem >= 5:
+                return 30
+        else:
+            contagem = 1
+
+    return 0
