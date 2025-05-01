@@ -48,4 +48,22 @@ while rodada < 12:
                 print(f'Dados rolados: {dados_rolados}')
                 print(f'Dados guardados: {dados_guardados}')
                 ja_rerrolou += 1
-
+        elif opcao == '4':
+            funcoes.imprime_cartela(cartela)
+        elif opcao == '0':
+            print("Digite a combinação desejada:")
+            combinacao = input(('> '))
+            cats_av = cartela['regra_avancada']
+            cats_simp = cartela['regra_simples']
+            while combinacao not in cats_av and int(combinacao) not in cats_simp: #essa estrutura ta dando errado, rever 
+                print("Combinação inválida. Tente novamente.") 
+                combinacao = input(('> '))
+            while cats_av[combinacao] != -1 or cats_simp[combinacao] != -1:
+                print("Essa combinação já foi utilizada.")
+                combinacao = input(('> '))
+            cartela = funcoes.faz_jogada(dados_guardados, combinacao, cartela) 
+            funcoes.imprime_cartela(cartela) 
+            rodada_continua = False 
+   
+        
+   
