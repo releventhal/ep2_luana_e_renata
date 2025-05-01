@@ -12,6 +12,7 @@ funcoes.imprime_cartela(cartela)
 
 rodada = 0
 while rodada < 12:
+    ja_rerrolou = 0
     dados_rolados = funcoes.rolar_dados(5)
     dados_guardados = []
     print(f'Dados rolados: {dados_rolados}')
@@ -28,3 +29,23 @@ while rodada < 12:
             dados_guardados = lista_pos_guardar[1]
             print(f'Dados rolados: {dados_rolados}')
             print(f'Dados guardados: {dados_guardados}')
+        elif opcao =='2':
+            print("Digite o índice do dado a ser removido (0 a 4):")
+            dado_remover = input(('> '))
+            lista_pos_remover = funcoes.remover_dado(dados_rolados, dados_guardados, int(dado_remover))
+            dados_rolados = lista_pos_remover[0]
+            dados_guardados = lista_pos_remover[1]
+            print(f'Dados rolados: {dados_rolados}')
+            print(f'Dados guardados: {dados_guardados}')
+        elif opcao == '3':
+            if ja_rerrolou >= 2:
+                print("Você já usou todas as rerrolagens.")
+                print(f'Dados rolados: {dados_rolados}')
+                print(f'Dados guardados: {dados_guardados}')
+            else: 
+                qtd = len(dados_rolados)
+                dados_rolados = funcoes.rolar_dados(qtd) 
+                print(f'Dados rolados: {dados_rolados}')
+                print(f'Dados guardados: {dados_guardados}')
+                ja_rerrolou += 1
+
