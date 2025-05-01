@@ -110,3 +110,24 @@ def calcula_pontos_full_house(dados):
         return soma
     else:
         return 0
+
+def calcula_pontos_quadra(lista):
+    dicio = {}
+    for n in lista:
+        if n in dicio:
+            dicio[n] += 1
+        else:
+            dicio[n] = 1 
+    quatro_iguais = False
+    for qtd in dicio.values():
+        if qtd >= 4: 
+            quatro_iguais = True
+    soma = 0
+    if quatro_iguais:
+        for n in lista:
+            soma += n
+        return soma 
+    else:
+        return 0
+
+
