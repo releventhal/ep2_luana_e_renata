@@ -156,3 +156,15 @@ def calcula_pontos_regra_avancada(lista):
     dicio['sequencia_alta'] = calcula_pontos_sequencia_alta(lista)
     dicio['sequencia_baixa'] = calcula_pontos_sequencia_baixa(lista)
     return dicio 
+
+def faz_jogada(lista, categoria, dicio):
+    dicio_pontuacao_avancada = calcula_pontos_regra_avancada(lista)
+    dicio_pontuacao_simples = calcula_pontos_regra_simples(lista)
+    if categoria in dicio_pontuacao_avancada:
+        pontuacao = dicio_pontuacao_avancada[categoria] 
+        dicio['regra_avancada'][categoria] = pontuacao 
+    else:
+        pontuacao = dicio_pontuacao_simples[int(categoria)]
+        dicio['regra_simples'][int(categoria)] = pontuacao
+     
+    return dicio
