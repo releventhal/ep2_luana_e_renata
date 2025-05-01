@@ -130,4 +130,19 @@ def calcula_pontos_quadra(lista):
     else:
         return 0
 
+def calcula_pontos_quina(lista):
+    dicio = {}
+    for n in lista:
+        if n in dicio:
+            dicio[n] += 1
+        else:
+            dicio[n] = 1 
+    cinco_iguais = False
+    for qtd in dicio.values():
+        if qtd >= 5:
+            cinco_iguais = True
+    if cinco_iguais:
+        return 50
+    else:
+        return 0
 
