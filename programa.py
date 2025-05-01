@@ -1,1 +1,2 @@
-#arquivo funções 
+# import funcoes 
+print('hello')
