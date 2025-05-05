@@ -4,9 +4,9 @@ cartela = {
     'regra_avancada': {
         'sem_combinacao': -1,
         'quadra': -1,
-        'full house': -1,
-        'sequencia baixa': -1,
-        'sequencia alta': -1,
+        'full_house': -1,
+        'sequencia_baixa': -1,
+        'sequencia_alta': -1,
         'cinco_iguais': -1   }         }               #cria uma cartela vazia
 funcoes.imprime_cartela(cartela)
 
@@ -55,15 +55,36 @@ while rodada < 12:
             combinacao = input(('> '))
             cats_av = cartela['regra_avancada']
             cats_simp = cartela['regra_simples']
-            while combinacao not in cats_av and int(combinacao) not in cats_simp: #essa estrutura ta dando errado, rever 
-                print("Combinação inválida. Tente novamente.") 
-                combinacao = input(('> '))
-            while cats_av[combinacao] != -1 or cats_simp[combinacao] != -1:
-                print("Essa combinação já foi utilizada.")
-                combinacao = input(('> '))
+            if combinacao not in ['1', '2', '3', '4', '5', '6']: 
+                while combinacao not in cats_av:
+                    print("Combinação inválida. Tente novamente.") 
+                    combinacao = input(('> '))
+            else:
+                while int(combinacao) not in cats_simp:
+                    print("Combinação inválida. Tente novamente.") 
+                    combinacao = input(('> '))
+            if combinacao in cats_av:
+                while cats_av[combinacao] != -1:
+                    print("Essa combinação já foi utilizada.")
+                    combinacao = input(('> '))
+            if combinacao in cats_simp:
+                while cats_simp[int(combinacao)] != -1:
+                    print("Essa combinação já foi utilizada.")
+                    combinacao = input(('> '))
             cartela = funcoes.faz_jogada(dados_guardados, combinacao, cartela) 
             funcoes.imprime_cartela(cartela) 
-            rodada_continua = False 
+            rodada_continua = False
+    rodada += 1  
    
         
+print("Fim do jogo!")
+funcoes.imprime_cartela(cartela)
+
+total_pontos = sum(p for p in cartela['regra_simples'].values()) + sum(p for p in cartela['regra_avancada'].values())
+
+pontos_simples = sum(p for p in cartela['regra_simples'].values())
+if pontos_simples >= 63:
+    total_pontos += 35
+
+print(f"Pontuação total: {total_pontos}")
    
