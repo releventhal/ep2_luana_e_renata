@@ -79,7 +79,6 @@ while rodada < 12:
                     cat = input()  
     
             cartela = funcoes.faz_jogada(dados_totais, cat, cartela) 
-            # funcoes.imprime_cartela(cartela) 
             rodada_continua = False
         else:
             print('Opção inválida. Tente novamente.')
