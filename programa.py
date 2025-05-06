@@ -61,8 +61,8 @@ while rodada < 12:
             elif opcao == '0': 
                 dados_totais = dados_guardados + dados_rolados
                 cat_valida = False
+                print("Digite a combinação desejada:")
                 while not cat_valida:
-                    print("Digite a combinação desejada:")
                     cat = input()
                     if cat in cats_regra_simples:
                         num = int(cat)
