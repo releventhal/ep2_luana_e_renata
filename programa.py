@@ -63,22 +63,28 @@ while rodada < 12:
         elif opcao == '4':             #imprime a cartela
             funcoes.imprime_cartela(cartela)
         elif opcao == '0': 
-            dados_totais = dados_guardados + dados_rolados                   #jogada 
-            print("Digite a combinação desejada:")
-            cat = input()
-            while cat not in cats_regra_avan and cat not in cats_regra_simples:
-                print("Combinação inválida. Tente novamente.")
+            dados_totais = dados_guardados + dados_rolados
+            cat_valida = False
+            while not cat_valida:
+                print("Digite a combinação desejada:")
                 cat = input()
-            if cat in cats_regra_simples:
-                while cartela['regra_simples'][int(cat)] != -1:
-                    print("Essa combinação já foi utilizada.")
-                    cat = input()
-            if cat in cats_regra_avan:
-                while cartela['regra_avancada'][cat] != -1:
-                    print("Essa combinação já foi utilizada.")
-                    cat = input()  
-    
-            cartela = funcoes.faz_jogada(dados_totais, cat, cartela) 
+                if cat in cats_regra_simples:
+                    num = int(cat)
+                    if cartela['regra_simples'][num] == -1:
+                        cartela = funcoes.faz_jogada(dados_totais, cat, cartela)
+                        cat_valida = True
+                    else:
+                        print("Essa combinação já foi utilizada.")
+                elif cat in cats_regra_avan:
+                    if cartela['regra_avancada'][cat] == -1:
+                        cartela = funcoes.faz_jogada(dados_totais, cat, cartela)
+                        cat_valida = True
+                    else:
+                        print("Essa combinação já foi utilizada.")
+                else:
+                    print("Combinação inválida. Tente novamente.")
+
+
             rodada_continua = False
         else:
             print('Opção inválida. Tente novamente.')
