@@ -33,53 +33,55 @@ while rodada < 12:
         print(f'Dados guardados: {dados_guardados}')
         print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
         opcao = input()
-        if opcao == '1':                    #programa para guardar o dado
-            print("Digite o índice do dado a ser guardado (0 a 4):")
-            dado_guardar = input()
-            lista_pos_guardar = funcoes.guardar_dado(dados_rolados, dados_guardados, int(dado_guardar))
-            dados_rolados = lista_pos_guardar[0]
-            dados_guardados = lista_pos_guardar[1]
-        elif opcao =='2':             #programa para remover o dado 
-            print("Digite o índice do dado a ser removido (0 a 4):")
-            dado_remover = input()
-            lista_pos_remover = funcoes.remover_dado(dados_rolados, dados_guardados, int(dado_remover))
-            dados_rolados = lista_pos_remover[0]
-            dados_guardados = lista_pos_remover[1]
-        elif opcao == '3':              #programa para rolar de novo (o ja_rerrolou é zerado a cada rodada)
-            if ja_rerrolou >= 2:
-                print("Você já usou todas as rerrolagens.")
-            else: 
-                qtd = len(dados_rolados)
-                dados_rolados = funcoes.rolar_dados(qtd) 
-                ja_rerrolou += 1
-        elif opcao == '4':             #imprime a cartela
-            funcoes.imprime_cartela(cartela)
-        elif opcao == '0': 
-            dados_totais = dados_guardados + dados_rolados
-            cat_valida = False
-            while not cat_valida:
-                print("Digite a combinação desejada:")
-                cat = input()
-                if cat in cats_regra_simples:
-                    num = int(cat)
-                    if cartela['regra_simples'][num] == -1:
-                        cartela = funcoes.faz_jogada(dados_totais, cat, cartela)
-                        cat_valida = True
-                    else:
-                        print("Essa combinação já foi utilizada.")
-                elif cat in cats_regra_avan:
-                    if cartela['regra_avancada'][cat] == -1:
-                        cartela = funcoes.faz_jogada(dados_totais, cat, cartela)
-                        cat_valida = True
-                    else:
-                        print("Essa combinação já foi utilizada.")
-                else:
-                    print("Combinação inválida. Tente novamente.")
-
-
-            rodada_continua = False
-        else:
+        while opcao not in ['0', '1', '2', '3', '4']:
             print('Opção inválida. Tente novamente.')
+            opcao = input()
+        else:
+            if opcao == '1':                    #programa para guardar o dado
+                print("Digite o índice do dado a ser guardado (0 a 4):")
+                dado_guardar = input()
+                lista_pos_guardar = funcoes.guardar_dado(dados_rolados, dados_guardados, int(dado_guardar))
+                dados_rolados = lista_pos_guardar[0]
+                dados_guardados = lista_pos_guardar[1]
+            elif opcao =='2':             #programa para remover o dado 
+                print("Digite o índice do dado a ser removido (0 a 4):")
+                dado_remover = input()
+                lista_pos_remover = funcoes.remover_dado(dados_rolados, dados_guardados, int(dado_remover))
+                dados_rolados = lista_pos_remover[0]
+                dados_guardados = lista_pos_remover[1]
+            elif opcao == '3':              #programa para rolar de novo (o ja_rerrolou é zerado a cada rodada)
+                if ja_rerrolou >= 2:
+                    print("Você já usou todas as rerrolagens.")
+                else: 
+                    qtd = len(dados_rolados)
+                    dados_rolados = funcoes.rolar_dados(qtd) 
+                    ja_rerrolou += 1
+            elif opcao == '4':             #imprime a cartela
+                funcoes.imprime_cartela(cartela)
+            elif opcao == '0': 
+                dados_totais = dados_guardados + dados_rolados
+                cat_valida = False
+                while not cat_valida:
+                    print("Digite a combinação desejada:")
+                    cat = input()
+                    if cat in cats_regra_simples:
+                        num = int(cat)
+                        if cartela['regra_simples'][num] == -1:
+                            cartela = funcoes.faz_jogada(dados_totais, cat, cartela)
+                            cat_valida = True
+                        else:
+                            print("Essa combinação já foi utilizada.")
+                    elif cat in cats_regra_avan:
+                        if cartela['regra_avancada'][cat] == -1:
+                            cartela = funcoes.faz_jogada(dados_totais, cat, cartela)
+                            cat_valida = True
+                        else:
+                            print("Essa combinação já foi utilizada.")
+                    else:
+                        print("Combinação inválida. Tente novamente.")
+
+
+                rodada_continua = False
     rodada += 1  
    
         
