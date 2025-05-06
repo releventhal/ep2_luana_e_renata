@@ -27,10 +27,10 @@ while rodada < 12:
     ja_rerrolou = 0
     dados_rolados = funcoes.rolar_dados(5)          #rolagem inicial 
     dados_guardados = []
-    print(f'Dados rolados: {dados_rolados}')
-    print(f'Dados guardados: {dados_guardados}')
     rodada_continua = True
     while rodada_continua:
+        print(f'Dados rolados: {dados_rolados}')
+        print(f'Dados guardados: {dados_guardados}')
         print("Digite 1 para guardar um dado, 2 para remover um dado, 3 para rerrolar, 4 para ver a cartela ou 0 para marcar a pontuação:")
         opcao = input()
         if opcao == '1':                    #programa para guardar o dado
@@ -39,26 +39,18 @@ while rodada < 12:
             lista_pos_guardar = funcoes.guardar_dado(dados_rolados, dados_guardados, int(dado_guardar))
             dados_rolados = lista_pos_guardar[0]
             dados_guardados = lista_pos_guardar[1]
-            print(f'Dados rolados: {dados_rolados}')
-            print(f'Dados guardados: {dados_guardados}')
         elif opcao =='2':             #programa para remover o dado 
             print("Digite o índice do dado a ser removido (0 a 4):")
             dado_remover = input()
             lista_pos_remover = funcoes.remover_dado(dados_rolados, dados_guardados, int(dado_remover))
             dados_rolados = lista_pos_remover[0]
             dados_guardados = lista_pos_remover[1]
-            print(f'Dados rolados: {dados_rolados}')
-            print(f'Dados guardados: {dados_guardados}')
         elif opcao == '3':              #programa para rolar de novo (o ja_rerrolou é zerado a cada rodada)
             if ja_rerrolou >= 2:
                 print("Você já usou todas as rerrolagens.")
-                print(f'Dados rolados: {dados_rolados}')
-                print(f'Dados guardados: {dados_guardados}')
             else: 
                 qtd = len(dados_rolados)
                 dados_rolados = funcoes.rolar_dados(qtd) 
-                print(f'Dados rolados: {dados_rolados}')
-                print(f'Dados guardados: {dados_guardados}')
                 ja_rerrolou += 1
         elif opcao == '4':             #imprime a cartela
             funcoes.imprime_cartela(cartela)
